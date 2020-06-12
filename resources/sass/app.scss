@@ -1,1 +1,181 @@
 //
+*{
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-weight: 20px;
+}
+
+nav {
+    padding: 0;
+    margin: 0;
+}
+
+form input, form button {
+    height: 30px !important;
+}
+
+.font-12 {
+    font-size: 1vw;
+}
+
+.font-2.5 {
+    font-size: 2.5vw;
+}
+
+.font-2 {
+    font-size: 2vw;
+}
+
+.navbar-brand{
+    color: rgb(163, 163, 163) !important;
+}
+
+.nav-link {
+    color: rgb(236, 175, 61) !important;
+    font-size: 12px;
+}
+
+.hero h1 {
+    /* Text styles */
+    font-size: 2em;
+    letter-spacing: 2px;
+    
+    /* Margins */
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.hero-inner p {
+    font-size: 13px;
+    font-weight: 100;
+    letter-spacing: 2px;
+}
+
+.hero {
+    /* Sizing */
+    // width: 100vw;
+     height: 100vh;
+    
+    /* Flexbox stuff */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Text styles */
+    text-align: center;
+    color: white;
+    
+    /* Background styles */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),  url('/images/illusration.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#hero {
+    background-image: url('/images/illusration.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+/*SPEAKERS SECTION */
+.team-section h3, .team-section p {
+    color: rgb(59, 59, 59);
+    font-size: 10x;
+    text-transform: capitalize;
+    font-weight: 100;
+    letter-spacing: 2px;
+}
+
+.btn-see-all {
+    display: block;
+    width: 100px;
+    height: 25px;
+    
+    /* Padding and margins */
+    // padding: 1em;
+    padding-bottom: 20px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* Text styles */
+    color: rgb(236, 175, 61);
+    text-decoration: none;
+    font-size: 10px;
+    
+    /* Border styles */
+    border: 3px solid white;
+    border-radius: 20px;
+    
+    /* Background styles */
+    background-color: rgba(30, 30, 30, 0.877);
+}
+
+.speaker-image {
+    width: 25%;
+    height: 25%;
+}
+
+.team-sec-title {
+    width: 50%;
+}
+
+.topics-section {
+    margin-bottom: 50px;
+    border-top: 1px solid rgb(35, 35, 35);
+}
+
+.border-top {
+    border-top: 1px solid rgb(35, 35, 35);
+}
+
+.border-bottom {
+    border-bottom: 1px solid rgb(35, 35, 35);
+    border-bottom-width: 10px;
+}
+
+.topics-section .container-topic {
+    background-color: rgb(29, 28, 28);
+    font-size: 12px;
+    text-transform: uppercase;
+    width: 250px;
+    height: 25px;
+}
+
+.popular-episodes-section {
+    margin-bottom: 50px;
+}
+
+.popular-episodes-section .list-episodes {
+    font-size: 15px;
+}
+
+.popular-episodes-section .list-episodes a {
+    text-decoration: none;
+    color: rgb(29, 28, 28);
+
+}
+
+#sticky-footer{
+    background-color: rgb(22, 22, 22) !important;
+  }
+
+  .color-black {
+    color: rgb(59, 59, 59);   
+  }
+
+  .table {
+    color: rgb(59, 59, 59) !important; 
+  }
+
