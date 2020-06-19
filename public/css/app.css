@@ -151,7 +151,11 @@ form button {
 }
 
 .font-color-orange {
-  color: #ecaf3d;
+  color: #ecaf3d !important;
+}
+
+.font-color-black {
+  color: #161616;
 }
 
 .table .row .col {

@@ -10,25 +10,28 @@
             <div class="container table">
                 <div class="row border-top border-bottom py-2">
                     <div class="col col-4 bold">#</div>
+                    <div class="col col-4 bold">Topic</div>
                     <div class="col col-4 bold">Speaker</div>
-                    <div class="col col-4"></div>
                 </div>
 
-                {{-- <a href="#"> --}}
-                     <div class="row border-top border-bottom py-2">
-                        <div class="col col-4">1</div>
-                        <div class="col col-4">Abubakar Mohamed - Topic name here</div>
-                        <div class="col col-4">
-                            <audio controls>
-                                <source src="/storage/app/public/Sahara_Rains.mp3" type="audio/ogg">
-                                <source src="/storage/app/public/Sahara_Rains.mp3" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                              </audio>
-                        </div>
-                    </div>
-                {{-- </a> --}}
+                @forelse ($episodes as $episode)
 
-                <a href="#">
+                <a href="/episode/{{$episode->id}}">
+                     <div class="row border-top border-bottom py-2">
+                        <div class="col col-4">&bull;</div>
+                     <div class="col col-4">{{$episode->topic}}</div>
+                        <div class="col col-4">{{$episode->firstname . ' '. $episode->surname}}</div>
+                    </div>
+                </a>
+
+                @empty
+                <div class="text-center">
+                    No items Found
+                </div>
+          
+                @endforelse
+
+                {{-- <a href="#">
                     <div class="row border-top border-bottom py-2">
                         <div class="col col-4">2</div>
                         <div class="col col-4">Said Ragge</div>
@@ -114,7 +117,7 @@
                <div class="col col-4">Sheikh Umal</div>
                <div class="col col-4"></div>
            </div>
-       </a>
+       </a> --}}
 
             </div>
             

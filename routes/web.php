@@ -17,9 +17,11 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/speakers', function () {
-    return view('speakers');
-});
+// Route::get('/speakers', function () {
+//     return view('speakers');
+// });
+
+Route::get('/speakers', 'ImageController@show'); 
 
 Route::get('/topics', function () {
     return view('topics');
@@ -34,10 +36,22 @@ Route::get('/recents', function () {
     return view('recents');
 });
 
-Route::get('/episodes', function () {
-    return view('episodes');
-});
+// Route::get('/episodes', function () {
+//     return view('episodes');
+// });
 
-Route::get('/episode', function () {
-    return view('episode');
-});
+Route::get('/episodes', 'AudioController@show'); 
+
+// Route::get('/episode', function () {
+//     return view('episode');
+// });
+
+Route::get('/episode/{id}', 'AudioController@showEpisode'); 
+
+Route::get('/test', 'AudioController@create');
+Route::post('/test', 'AudioController@store');
+// Route::get('/test/{audio}', 'AudioController@show');
+
+Route::get('/testImage', 'ImageController@create');
+Route::post('/testImage', 'ImageController@store');
+Route::get('/testImage/{image}', 'ImageController@show'); 

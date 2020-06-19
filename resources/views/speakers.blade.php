@@ -13,17 +13,27 @@
     <!-- Grid row -->
     <div class="row p-0 m-0">
   
+      @forelse ($speakers as $speaker)
+          
+   
       <!-- Grid column -->
       <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
         <div class="avatar mx-auto">
-          <img src="{{asset('images/abubakar.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-            alt="Sample avatar">
+          <img src="{{$speaker->url}}" class="speaker-image rounded-circle z-depth-1"
+            alt="An image of {{$speaker->firstname}}"> 
         </div>
-        <a href="#"><p class="font-weight-bold mt-4 mb-3">Abubakar Mohammed</p></a>
+        <a href="#"><p class="font-weight-bold mt-4 mb-3">{{$speaker->firstname}} {{$speaker->surname}}</p></a>
       </div>
       <!-- Grid column -->
-  
-      <!-- Grid column -->
+
+      @empty
+      <div class="text-center">
+          No items Found
+      </div>
+
+      @endforelse
+
+      {{-- <!-- Grid column -->
       <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
         <div class="avatar mx-auto">
           <img src="{{asset('images/said.jpg')}}" class="speaker-image rounded-circle z-depth-1"
@@ -309,7 +319,7 @@
           </div>
           <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Kenyawi</p></a>
         </div>
-        <!-- Grid column -->
+        <!-- Grid column --> --}}
       
     </div>
     
