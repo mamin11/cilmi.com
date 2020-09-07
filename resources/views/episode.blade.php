@@ -27,7 +27,7 @@
                      <div class="row border-top border-bottom py-2">
                          <div class="col col-12 col-lg-3 col-md-3"></div>
                         <div class="col col-12 col-lg-3 col-md-3 text-center">{{$speaker->firstname .' '. $speaker->surname}}</div>
-                        <div class="col col-12 col-lg-3 col-md-3 text-center"> - {{$episode->topic}} - </div>
+                        <div class="col col-12 col-lg-3 col-md-3 text-center"> - {{$episode->getTopic()->name}} - </div>
                         <div></div>
 
                      </div>

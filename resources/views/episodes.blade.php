@@ -19,8 +19,8 @@
                 <a href="/episode/{{$episode->id}}">
                      <div class="row border-top border-bottom py-2">
                         <div class="col col-4">&bull;</div>
-                     <div class="col col-4">{{$episode->topic}}</div>
-                        <div class="col col-4">{{$episode->firstname . ' '. $episode->surname}}</div>
+                     <div class="col col-4">{{$episode->getTopic()->name}}</div>
+                        <div class="col col-4">{{$episode->getSpeaker()->firstname . ' '. $episode->getSpeaker()->surname}}</div>
                     </div>
                 </a>
 

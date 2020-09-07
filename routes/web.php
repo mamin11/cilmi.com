@@ -55,3 +55,25 @@ Route::post('/test', 'AudioController@store');
 Route::get('/testImage', 'ImageController@create');
 Route::post('/testImage', 'ImageController@store');
 Route::get('/testImage/{image}', 'ImageController@show'); 
+
+
+Route::get('/admin', 'AdminController@dashboard'); //done
+Route::get('/admin/users', 'AdminController@adminPanel');//done
+Route::get('/admin/view', 'AdminController@viewAdmins');//done
+Route::get('/admin/create', 'AdminController@createAdminForm');//done
+Route::post('/admin/create', 'AdminController@createAdmin');//done
+Route::get('/admin/edit/{id}', 'AdminController@editAdminForm'); //done
+Route::post('/admin/edit/{id}', 'AdminController@editAdmin'); //done
+Route::get('/admin/delete/{id}', 'AdminController@deleteAdmin');//done
+
+//do the same for speakers -> imageController -created
+//, episodes -> audio controller -created
+//, series 
+//, topics
+
+
+/*
+//Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+*/

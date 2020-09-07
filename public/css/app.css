@@ -42,6 +42,14 @@ form button {
   font-size: 12px;
 }
 
+i {
+  color: #ecaf3d !important;
+}
+
+.h-100 {
+  height: 100vh !important;
+}
+
 .hero h1 {
   /* Text styles */
   font-size: 2em;

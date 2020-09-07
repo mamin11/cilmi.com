@@ -6,7 +6,7 @@ use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ImageController extends Controller
+class ImageController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
     public function create() 
     {
@@ -15,7 +15,7 @@ class ImageController extends Controller
 
     public function store(Request $request) 
     {
-       $name = $request->file('images')->getClientOriginalName();
+    $name = $request->file('images')->getClientOriginalName();
 
     //    $data = [
     //        'name' => $request->input('name'),
@@ -41,16 +41,15 @@ class ImageController extends Controller
 
     public function show(Image $image)
     {
-        //return Storage::disk('s3')->response('images/'. $image->filename);
-       
+        //return Storage::disk('s3')->response('images/'. $image->filename); 
        // return $image->url;
 
-       $speakers = Image::orderBy('firstname')->get(); 
+    $speakers = Image::orderBy('firstname')->get(); 
        //$profileImage = Storage::disk('s3')->response('images/'. $speakers->filename);
       // $blogs = Posts::orderBy('updated_at', 'desc')->take(4)->paginate(4);
     //    $data = [
     //        'image' => $image,
     //        'blogs' => $blogs
     //    ];
-       return view('speakers')->with('speakers', $speakers);
+    return view('speakers')->with('speakers', $speakers);
     }}

@@ -18,11 +18,11 @@ class AudioController extends Controller
     public function store(Request $request) 
     {
         //$path = $request->file('audio')->store('audio')->storeAs('name');
-         $name = $request->file('audio')->getClientOriginalName();
-       $data = [
-           'name' => $request->input('name'),
-           'topic' => $request->input('topic'),
-           'speaker' => $request->input('speaker')
+        $name = $request->file('audio')->getClientOriginalName();
+        $data = [
+        'name' => $request->input('name'),
+        'topic' => $request->input('topic'),
+        'speaker' => $request->input('speaker')
         
         ];
 
@@ -53,24 +53,30 @@ class AudioController extends Controller
     public function show(Audio $audio)
     {
         //return Storage::disk('s3')->response('audio/'. $audio->filename);
-       
+
        // return $audio->url;
 
-       
-       $episodes = Audio::orderBy('firstname')->get(); 
+    $episodes = Audio::orderBy('speaker')->get(); 
+      // $speaker = Image::get()->where('id', $episodes->speaker)->first();
+    //   $firstname = $episodes->speaker->firstname;
+    //   $surname = $episodes->speaker->surname;
 
-       return view('episodes')->with('episodes', $episodes);
+    return view('episodes')->with([
+        'episodes'=> $episodes
+            // 'firstname' => $firstname,
+            // 'surname' => $surname
+    ]);
     }
 
     public function showEpisode($id)
     {
 
-       $episode = Audio::where('id', $id)->first();
-       $speaker = Image::get()->where('id', $episode->speakerId)->first();
+    $episode = Audio::get()->where('id', $id)->first();
+    $speaker = Image::get()->where('id', $episode->speaker)->first();
 
-       return view('episode')->with([
-           'episode' => $episode,
-           'speaker' => $speaker
-       ]);
+    return view('episode')->with([
+        'episode' => $episode,
+        'speaker' => $speaker
+    ]);
     }
 }

@@ -26,10 +26,16 @@
       </div>
       <!-- Grid column -->
 
+      <a href="#" class="btn-see-all btn btn-dark">See All</a> <!-- this does not show if the result is empty -->
+
       @empty
-      <div class="text-center">
-          No items Found
+      <div class="text-center" style="height: 65vh;">
+      <div class="container">
+        <p class="text-center font-black m-5"> No items Found </p>
       </div>
+         
+      </div>
+      
 
       @endforelse
 
@@ -324,6 +330,6 @@
     </div>
     
     <!--ADD PAGINATION HERE -->
-    <a href="#" class="btn-see-all btn btn-dark">See All</a>
+    <!-- <a href="#" class="btn-see-all btn btn-dark">See All</a> -->
 
     @endsection

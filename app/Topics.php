@@ -1,13 +1,12 @@
 <?php
-//this model represents the speaker
+
 namespace App;
 use App\Audio;
+
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Topics extends Model
 {
-    protected $guarded = [];
-
     public function episodes()
     {
         return $this->hasMany('App\Audio');
@@ -15,9 +14,11 @@ class Image extends Model
 
     public function getEpisodes()
     {
-        //function to get all episodes of a speaker
+        //function to get all episodes of a topic
         $episodes = Audio::get()->where('id', $this->id)->first();
 
         return $episodes;
     }
 }
+
+//function to get all episodes of a specific topic
