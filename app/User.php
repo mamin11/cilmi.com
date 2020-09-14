@@ -9,6 +9,9 @@ use App\Role;
 
 class User extends \TCG\Voyager\Models\User
 {
+
+    public $timestamps = true;
+    
     use Notifiable;
 
     /**

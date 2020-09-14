@@ -69,7 +69,46 @@ Route::get('/admin/delete/{id}', 'AdminController@deleteAdmin');//done
 //do the same for speakers -> imageController -created
 //, episodes -> audio controller -created
 //, series 
-//, topics
+//, topics //done
+//questions
+//quran tafseer
+
+//topic routes
+Route::get('/admin/topics', 'TopicController@dashboard');//done
+Route::get('/admin/topics/episodes/{id}', 'TopicController@topicEpisodes');//done
+Route::get('/admin/topics/view', 'TopicController@viewTopics');//done
+Route::get('/admin/topics/create', 'TopicController@createTopicForm');//done
+Route::post('/admin/topics/create', 'TopicController@createTopic');//done
+Route::get('/admin/topics/edit/{id}', 'TopicController@editTopicForm');//done
+Route::post('/admin/topics/edit/{id}', 'TopicController@editTopic');//done
+Route::get('/admin/topics/delete/{id}', 'TopicController@deleteTopic');//done
+
+//speaker routes
+Route::get('/admin/speakers', 'ImageController@dashboard');//done
+Route::get('/admin/speakers/view', 'ImageController@viewSpeakers');//done
+Route::get('/admin/speakers/create', 'ImageController@createSpeakerForm');//done
+Route::post('/admin/speakers/create', 'ImageController@createSpeaker');//done
+Route::get('/admin/speakers/edit/{id}', 'ImageController@editSpeakerForm');//done
+Route::post('/admin/speakers/edit/{id}', 'ImageController@editSpeaker');//done
+Route::get('/admin/speakers/delete/{id}', 'ImageController@deleteSpeaker');//done
+
+//episode routes
+Route::get('/admin/episode', 'AudioController@dashboard');//done
+Route::get('/admin/episode/view', 'AudioController@viewEpisodes');//done
+Route::get('/admin/episode/create', 'AudioController@createEpisodeForm');//done
+Route::post('/admin/episode/create', 'AudioController@createEpisode');//done
+Route::get('/admin/episode/edit/{id}', 'AudioController@editEpisodeForm');//done
+Route::post('/admin/episode/edit/{id}', 'AudioController@editEpisode');//done
+Route::get('/admin/episode/delete/{id}', 'AudioController@deleteEpisode');//done
+
+//series routes
+Route::get('/admin/series', 'SeriesController@dashboard');
+Route::get('/admin/series/view', 'SeriesController@viewSeries');
+Route::get('/admin/series/create', 'SeriesController@createSeriesForm');
+Route::post('/admin/series/create', 'SeriesController@createSeries');
+Route::get('/admin/series/edit/{id}', 'SeriesController@editSeriesForm');
+Route::post('/admin/series/edit/{id}', 'SeriesController@editSeries');
+Route::get('/admin/series/delete/{id}', 'SeriesController@deleteSeries');
 
 
 /*

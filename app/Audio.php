@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Audio extends Model
 {
     protected $guarded = [];
+    public $timestamps = true;
 
     public function speaker()
     {

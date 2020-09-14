@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     protected $guarded = [];
+    public $timestamps = true;
 
     public function episodes()
     {
@@ -19,5 +20,15 @@ class Image extends Model
         $episodes = Audio::get()->where('id', $this->id)->first();
 
         return $episodes;
+    }
+
+    public function getNumberOfEpisodes()
+    {
+        //function to get all episodes of a topic
+        $episodes = Audio::get()->where('speaker', $this->id);
+
+        $number = count($episodes);
+
+        return $number;
     }
 }

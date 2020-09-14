@@ -98,7 +98,7 @@ class AdminController extends Controller
         $roles = Role::orderBy('name')->get();
 
         //message to be flashed
-        Session::flash('message', 'Successfully created!'); 
+        Session::flash('message', 'Successfully updated!'); 
         Session::flash('alert-class', 'text-success');
 
         //update the records

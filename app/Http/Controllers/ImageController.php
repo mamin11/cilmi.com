@@ -4,52 +4,182 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\Console\Input\Input;
 
 class ImageController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
-    public function create() 
+    // public function create() 
+    // {
+    //     return view('testImage');
+    // }
+
+    // public function store(Request $request) 
+    // {
+    // $name = $request->file('images')->getClientOriginalName();
+
+    // //    $data = [
+    // //        'name' => $request->input('name'),
+    // //        'topic' => $request->input('topic'),
+    // //        'speaker' => $request->input('speaker')
+        
+    // //     ];
+
+    //     $path = $request->file('images')->store('images', 's3');
+
+    //     Storage::disk('s3')->setVisibility($path, 'public');
+
+    //     $image = Image::create([
+    //         'filename' => basename($path),
+    //         'url' => Storage::disk('s3')->url($path),
+    //         'firstname' => $request->input('firstname'),
+    //         'surname' => $request->input('surname')
+    //     ]);
+
+    //     // var_dump($data);
+    //     return $image;
+    // }
+
+    // public function show(Image $image)
+    // {
+    //     //return Storage::disk('s3')->response('images/'. $image->filename); 
+    //    // return $image->url;
+
+    // $speakers = Image::orderBy('firstname')->get(); 
+    //    //$profileImage = Storage::disk('s3')->response('images/'. $speakers->filename);
+    //   // $blogs = Posts::orderBy('updated_at', 'desc')->take(4)->paginate(4);
+    // //    $data = [
+    // //        'image' => $image,
+    // //        'blogs' => $blogs
+    // //    ];
+    // return view('speakers')->with('speakers', $speakers);
+    // }
+
+    public function dashboard()
     {
-        return view('testImage');
+        return view('admin.speakerDashboard');
     }
 
-    public function store(Request $request) 
+    public function viewSpeakers()
     {
-    $name = $request->file('images')->getClientOriginalName();
+        $speakers = Image::orderBy('firstname')->get(); 
+        return view('admin.speakersList')->with('speakers', $speakers);
+    }
 
-    //    $data = [
-    //        'name' => $request->input('name'),
-    //        'topic' => $request->input('topic'),
-    //        'speaker' => $request->input('speaker')
-        
-    //     ];
+    public function createSpeakerForm()
+    {
+        return view('admin.createSpeakerForm');
+    }
+
+    public function createSpeaker(Request $request)
+    {
+        $name = $request->file('images')->getClientOriginalName();
 
         $path = $request->file('images')->store('images', 's3');
 
         Storage::disk('s3')->setVisibility($path, 'public');
 
-        $image = Image::create([
+        // var_dump($data);
+        //return $image;
+
+        $speaker = Image::create([
+            'firstname' => $request->input('speakerFirstname'),
+            'surname' => $request->input('speakerSurname'),
             'filename' => basename($path),
-            'url' => Storage::disk('s3')->url($path),
-            'firstname' => $request->input('firstname'),
-            'surname' => $request->input('surname')
+            'url' => Storage::disk('s3')->url($path)
         ]);
 
-        // var_dump($data);
-        return $image;
+        Session::flash('message', 'Successfully created!');
+        Session::flash('alert-class', 'text-success');
+        
+        return back();
     }
 
-    public function show(Image $image)
+    public function editSpeakerForm($id, Request $request)
     {
-        //return Storage::disk('s3')->response('images/'. $image->filename); 
-       // return $image->url;
+        $speaker = Image::find($id);
+        return view('admin.editSpeakerForm')->with('speaker', $speaker);
+    }
 
-    $speakers = Image::orderBy('firstname')->get(); 
-       //$profileImage = Storage::disk('s3')->response('images/'. $speakers->filename);
-      // $blogs = Posts::orderBy('updated_at', 'desc')->take(4)->paginate(4);
-    //    $data = [
-    //        'image' => $image,
-    //        'blogs' => $blogs
-    //    ];
-    return view('speakers')->with('speakers', $speakers);
-    }}
+    public function editSpeaker($id, Request $request)
+    {
+                //get the speaker
+                $speaker = Image::find($id);
+
+                //get the speaker image
+                $speakerImageFilename = $speaker->filename;
+                $speakerImageFileUrl = $speaker->url;
+        
+                //the file path
+                $originalPath = 'images/' . $speakerImageFilename;
+
+                if ($request->hasFile('images')) {
+                    $name = $request->file('images')->getClientOriginalName();
+                    $path = $request->file('images')->store('images', 's3');
+                    Storage::disk('s3')->setVisibility($path, 'public');
+
+                    //update the image with the new one
+                    $speaker->filename = basename($path);
+                    $speaker->url = Storage::disk('s3')->url($path);
+
+                    if($request->filled('speakerFirstName')) {
+                        $speaker->firstname = $request->input('speakerFirstName');
+                    }
+                    if($request->has('speakerSurName')) {
+                        $speaker->surname = $request->input('speakerSurName');
+                    }
+
+                    //then delete the original image
+                    Storage::disk('s3')->delete($originalPath);
+                } 
+                else {
+                //update only these records
+                if($request->filled('speakerFirstName')) {
+                    $speaker->firstname = $request->input('speakerFirstName');
+                   // $speaker->save();
+                }
+
+                if($request->has('speakerSurName')) {
+                    $speaker->surname = $request->input('speakerSurName');
+                   // $speaker->save();
+                }
+                
+                
+                }
+
+                $speaker->save();
+
+                Session::flash('message', 'Successfully updated!');
+                Session::flash('alert-class', 'text-success');
+
+                return back();
+    }
+
+    public function deleteSpeaker($id)
+    {
+        //get the speaker
+        $speaker = Image::find($id);
+
+        //get the speaker image
+        $speakerImageFilename = $speaker->filename;
+        $speakerImageFileUrl = $speaker->url;
+
+        //the file path
+        $path = 'images/' . $speakerImageFilename;
+
+        //delete the image from s3
+        Storage::disk('s3')->delete($path);
+
+        //delete from database
+        $speaker->delete();
+
+        Session::flash('message', 'successfully deleted');
+        Session::flash('alert-danger', 'text-danger');
+
+        return back();
+        //var_dump($speaker);
+        //return $path;
+    }
+}

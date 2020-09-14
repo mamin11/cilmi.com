@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Audio;
 use App\Image;
+use App\Topics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\Console\Input\Input;
 
 
 class AudioController extends Controller
 {
+    /*
     public function create() 
     {
         return view('test');
@@ -78,5 +83,137 @@ class AudioController extends Controller
         'episode' => $episode,
         'speaker' => $speaker
     ]);
+    }
+    */
+
+    public function dashboard()
+    {
+        return view('admin.episodesDashboard');
+    }
+
+    public function viewEpisodes()
+    {
+        $episodes = Audio::orderBy('id', 'DESC')->get(); 
+        return view('admin.episodesList')->with('episodes', $episodes);
+    }
+
+    public function createEpisodeForm()
+    {
+        $speakers = Image::orderBy('firstname')->get();
+        $topics = Topics::orderBy('name')->get(); 
+        return view('admin.createEpisodeForm')->with([
+            'speakers' => $speakers,
+            'topics' => $topics
+        ]);
+    }
+
+    public function createEpisode(Request $request)
+    {
+        $name = $request->file('audio')->getClientOriginalName();
+
+        $path = $request->file('audio')->store('audio', 's3');
+
+        Storage::disk('s3')->setVisibility($path, 'public');
+
+        $episode = Audio::create([
+            'topic' => $request->input('episodeTopic'),
+            'speaker' => $request->input('episodeSpeaker'),
+            'filename' => basename($path),
+            'url' => Storage::disk('s3')->url($path)
+        ]);
+
+        Session::flash('message', 'Successfully created!');
+        Session::flash('alert-class', 'text-success');
+        
+        return back();
+    }
+
+    public function editEpisodeForm($id)
+    {
+        $episode = Audio::find($id);
+        $speakers = Image::orderBy('firstname')->get();
+        $topics = Topics::orderBy('name')->get(); 
+        return view('admin.editEpisodeForm')->with([
+            'speakers'=> $speakers,
+            'episode' => $episode,
+            'topics' => $topics
+
+            ]);
+    }
+
+    public function editEpisode($id, Request $request)
+    {
+         //get the speaker
+        $episode = Audio::find($id);
+
+        //get the episode filename and url
+        $episodeFilename = $episode->filename;
+        $episodeFileUrl = $episode->url;
+
+         //the file path
+        $originalPath = 'audio/' . $episodeFilename;
+
+        if ($request->hasFile('audio')) {
+            $name = $request->file('audio')->getClientOriginalName();
+            $path = $request->file('audio')->store('audio', 's3');
+            Storage::disk('s3')->setVisibility($path, 'public');
+
+            //update the audio with the new one
+            $episode->filename = basename($path);
+            $episode->url = Storage::disk('s3')->url($path);
+
+            if($request->filled('episodeTopic')) {
+                $episode->topic = $request->input('episodeTopic');
+            }
+            if($request->has('episodeSpeaker')) {
+                $episode->speaker = $request->input('episodeSpeaker');
+            }
+
+             //then delete the original image
+            Storage::disk('s3')->delete($originalPath);
+        } 
+        else {
+         //update only these records
+        if($request->filled('episodeTopic')) {
+            $episode->topic = $request->input('episodeTopic');
+        }
+
+        if($request->has('episodeSpeaker')) {
+            $episode->speaker = $request->input('episodeSpeaker');
+        }
+        
+        
+        }
+
+        $episode->save();
+
+        Session::flash('message', 'Successfully updated!');
+        Session::flash('alert-class', 'text-success');
+
+        return back();
+    }
+
+    public function deleteEpisode($id)
+    {
+        //get the episode
+        $episode = Audio::find($id);
+
+        //get the episode filename and url
+        $episodeFilename = $episode->filename;
+        $episodeFileUrl = $episode->url;
+
+        //the file path
+        $path = 'audio/' . $episodeFilename;
+
+        //delete the image from s3
+        Storage::disk('s3')->delete($path);
+
+        //delete from database
+        $episode->delete();
+
+        Session::flash('message', 'successfully deleted');
+        Session::flash('alert-danger', 'text-danger');
+
+        return back();
     }
 }

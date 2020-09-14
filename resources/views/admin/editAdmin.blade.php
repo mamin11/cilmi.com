@@ -39,7 +39,7 @@
             <select id="inputRole" class="form-control font-color-black" name="adminRole" >
                 <option class="font-color-black" selected >Choose Role</option>
                 @forelse ($roles as $role)
-                <option class="font-color-black"   value="{{ $role->id}}">{{$role->name}}</option>
+                <option class="font-color-black" {{$admin->role_id == $role->id ? 'selected' : ''}}  value="{{ $role->id}}">{{$role->name}}</option>
                 @empty
                 <option>nothing found</option>
                 @endforelse

@@ -9,9 +9,11 @@
 
         <div class="row">
             <div class="col col-lg-6 col-md-6 col-sm-12 col-12 py-2 d-flex justify-content-center"><a href="/admin/users" class="text-decoration-none"><div class="container-topic text-center rounded py-5"><i class="fas fa-user fa-2x pr-3"></i>Manage Admins</div></a></div>
-            <div class="col col-lg-6 col-md-6 col-sm-12 col-12 py-2 d-flex justify-content-center"><a href="#" class="text-decoration-none"><div class="container-topic text-center rounded py-5"><i class="fas fa-microphone fa-2x pr-3"></i>Manage Speakers</div></a></div>
-            <div class="col col-lg-6 col-md-6 col-sm-12 col-12 py-2 d-flex justify-content-center"><a href="#" class="text-decoration-none"><div class="container-topic text-center rounded py-5"><i class="fas fa-volume-up fa-2x pr-3"></i>Manage Episodes</div></a></div>
-            <div class="col col-lg-6 col-md-6 col-sm-12 col-12 py-2 d-flex justify-content-center"><a href="#" class="text-decoration-none"><div class="container-topic text-center rounded py-5"><i class="fas fa-align-left fa-2x pr-3"></i>Manage Series</div></a></div>
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12 py-2 d-flex justify-content-center"><a href="/admin/speakers" class="text-decoration-none"><div class="container-topic text-center rounded py-5"><i class="fas fa-microphone fa-2x pr-3"></i>Manage Speakers</div></a></div>
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12 py-2 d-flex justify-content-center"><a href="/admin/episode" class="text-decoration-none"><div class="container-topic text-center rounded py-5"><i class="fas fa-volume-up fa-2x pr-3"></i>Manage Episodes</div></a></div>
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12 py-2 d-flex justify-content-center"><a href="/admin/series" class="text-decoration-none"><div class="container-topic text-center rounded py-5"><i class="fas fa-align-left fa-2x pr-3"></i>Manage Series</div></a></div>
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12 py-2 d-flex justify-content-center"><a href="/admin/topics" class="text-decoration-none"><div class="container-topic text-center rounded py-5"><i class="fas fa-book fa-2x pr-3"></i>Manage Topics</div></a></div>
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12 py-2 d-flex justify-content-center"><a href="/admin/questions" class="text-decoration-none"><div class="container-topic text-center rounded py-5"><i class="fas fa-question fa-2x pr-3"></i>Manage Questions</div></a></div>
 </section>
 
 

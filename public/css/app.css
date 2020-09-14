@@ -163,7 +163,7 @@ i {
 }
 
 .font-color-black {
-  color: #161616;
+  color: #161616 !important;
 }
 
 .table .row .col {
