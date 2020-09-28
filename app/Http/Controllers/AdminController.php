@@ -39,7 +39,7 @@ class AdminController extends Controller
         //loop through them in the template
         //link id of each to edit and delete buttons
 
-        $admins = User::orderBy('name')->get(); 
+        $admins = User::orderBy('name')->paginate(12); 
         return view('admin.adminsList')->with('admins', $admins);
     }
 

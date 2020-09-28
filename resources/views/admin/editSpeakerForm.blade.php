@@ -26,7 +26,7 @@
 @csrf
 
         <div class="avatar mx-auto">
-            <img src="{{$speaker->url}}" class="speaker-image rounded-circle z-depth-1"
+            <img src="{{$speaker->url ? $speaker->url : asset('images/placeholder.png')}}" class="speaker-image rounded-circle z-depth-1"
             alt="an Image of {{$speaker->firstname .' '. $speaker->surname}} " style="width: 250px; height:250px;">
         </div>
     <div class="form-group m-5">

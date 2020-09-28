@@ -19,7 +19,7 @@ class TopicController extends Controller
 
     public function viewTopics() 
     {
-        $topics = Topics::orderBy('name')->get(); 
+        $topics = Topics::orderBy('name')->paginate(12); 
         return view('admin.topicsList')->with('topics', $topics);
     }
 
@@ -79,6 +79,19 @@ class TopicController extends Controller
         Session::flash('alert-danger', 'text-danger');
 
         return back();
+    }
+
+    //front-end
+    public function showTopics()
+    {
+        $topics = Topics::orderBy('name')->paginate(16); 
+        return view('topics')->with('topics', $topics);
+    }
+
+    public function showTopicEpisodes($id)
+    {
+        $topic = Topics::find($id);
+        return view('topicEpisodes')->with('topic', $topic);
     }
 
 }

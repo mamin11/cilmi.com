@@ -93,7 +93,7 @@ class AudioController extends Controller
 
     public function viewEpisodes()
     {
-        $episodes = Audio::orderBy('id', 'DESC')->get(); 
+        $episodes = Audio::orderBy('id', 'DESC')->paginate(12); 
         return view('admin.episodesList')->with('episodes', $episodes);
     }
 
@@ -116,6 +116,7 @@ class AudioController extends Controller
         Storage::disk('s3')->setVisibility($path, 'public');
 
         $episode = Audio::create([
+            'title' => $request->input('episodeTitle'),
             'topic' => $request->input('episodeTopic'),
             'speaker' => $request->input('episodeSpeaker'),
             'filename' => basename($path),
@@ -162,6 +163,10 @@ class AudioController extends Controller
             $episode->filename = basename($path);
             $episode->url = Storage::disk('s3')->url($path);
 
+            if($request->filled('episodeTitle')) {
+                $episode->title = $request->input('episodeTitle');
+            }
+
             if($request->filled('episodeTopic')) {
                 $episode->topic = $request->input('episodeTopic');
             }
@@ -180,6 +185,10 @@ class AudioController extends Controller
 
         if($request->has('episodeSpeaker')) {
             $episode->speaker = $request->input('episodeSpeaker');
+        }
+
+        if($request->filled('episodeTitle')) {
+            $episode->title = $request->input('episodeTitle');
         }
         
         
@@ -216,4 +225,34 @@ class AudioController extends Controller
 
         return back();
     }
+
+    //front-end starts here
+    public function showEpisodes()
+    {
+        $episodes = Audio::orderBy('speaker')->paginate(15); 
+        return view('episodes')->with('episodes', $episodes);
+    }
+
+    public function showEpisode($id)
+    {
+        $episode = Audio::find($id);
+        return view('episode')->with('episode', $episode);
+    }
+
+    public function recentEpisodes()
+    {
+        $episodes = Audio::orderBy('created_at', 'DESC')->paginate(15); 
+        return view('recentEpisodes')->with('episodes', $episodes);
+    }
+
+    public function search(Request $request)
+    {
+        $q = $request->input('q');
+        $episodes = Audio::where('title', 'LIKE', '%' . $q . '%')->paginate(15);
+        // if(count($episodes) > 0)
+        return view('episodes')->with('episodes', $episodes);
+
+        //else return view ('episodes')->withMessage('No Details found. Try to search again !');
+    }
+    
 }

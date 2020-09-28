@@ -9,8 +9,9 @@
 
             <div class="container table">
                 <div class="row border-top border-bottom py-2">
-                    <div class="col col-2 bold">#</div>
-                    <div class="col col-2 bold">Topic</div>
+                    <div class="col col-1 bold">#</div>
+                    <div class="col col-2 bold">Title</div>
+                    <div class="col col-1 bold">Topic</div>
                     <div class="col col-2 bold">Speaker</div>
                     <div class="col col-2 bold">created at</div>
                     <div class="col col-4"></div>
@@ -20,8 +21,9 @@
                 @forelse ($episodes as $episode)
 
                     <div class="row border-top border-bottom py-2">
-                        <div class="col col-2">&bull;</div>
-                        <div class="col col-2">{{$episode->getTopic()->name}}</div>
+                        <div class="col col-1">&bull;</div>
+                        <div class="col col-2" id="hover-orange">{{$episode->title}}</div>
+                        <div class="col col-1">{{$episode->getTopic()->name}}</div>
                         <div class="col col-2">{{$episode->getSpeaker()->firstname . ' '. $episode->getSpeaker()->surname}}</div>
                         <div class="col col-2">{{date('d-m-Y', strtotime($episode->created_at))}}</div>
                         <div class="col col-4"><a href="/admin/episode/edit/{{$episode->id ? $episode->id : ''}}" class="btn btn-dark ml-2">EDIT</a> <a href="/admin/episode/delete/{{$episode->id ? $episode->id : ''}}" class="btn btn-danger ml-2">DELETE</a></div>
@@ -37,6 +39,9 @@
 
                 @endforelse
 
+                <div class="container ">
+                    {{$episodes->links()}}
+                </div>
 
             </div>
             

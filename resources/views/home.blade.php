@@ -27,7 +27,7 @@
                         </div>
                         <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                             <div>
-                                <a href="#" class="btn-see-all btn btn-dark btn-outline-dark my-3 text-center">Learn More</a>
+                                <a href="/about" class="btn-see-all btn btn-dark btn-outline-dark my-3 text-center">Learn More</a>
                             </div>
                         </div>
                     </div>
@@ -55,45 +55,26 @@
     <!-- Grid row -->
     <div class="row p-0 m-0">
   
+    @forelse ($speakers as $speaker)
       <!-- Grid column -->
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-lg-0 mb-5 p-0 m-0">
         <div class="avatar mx-auto">
-          <img src="{{asset('images/abubakar.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-            alt="Sample avatar">
+          <img src="{{$speaker->url ? $speaker->url : asset('images/placeholder.png')}}" class="speaker-image rounded-circle z-depth-1"
+            alt="An Image of {{$speaker->firstname .' ' . $speaker->surname}}">
         </div>
-        <a href="#"><p class="font-weight-bold mt-4 mb-3">Abubakar Mohammed</p></a>
+        <a href="/speaker/episodes/{{$speaker->id}}"><p class="font-weight-bold mt-4 mb-3">{{$speaker->firstname .' '. $speaker->surname}}</p></a>
       </div>
       <!-- Grid column -->
   
-      <!-- Grid column -->
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-lg-0 mb-5 p-0 m-0">
-        <div class="avatar mx-auto">
-          <img src="{{asset('images/said.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-            alt="Sample avatar">
-        </div>
-        <a href="#"><p class="font-weight-bold mt-4 mb-3">Said Ragge</p></a>
+      @empty
+      <div class="text-center">
+      <div class="container">
+        <p class="text-center font-black m-5"> No items Found </p>
       </div>
-      <!-- Grid column -->
-  
-      <!-- Grid column -->
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-lg-0 mb-5 p-0 m-0">
-        <div class="avatar mx-auto">
-          <img src="{{asset('images/umal.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-            alt="Sample avatar">
-        </div>
-        <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Umal</p></a>
+        
       </div>
-      <!-- Grid column -->
-  
-      <!-- Grid column -->
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-lg-0 mb-5 p-0 m-0">
-        <div class="avatar mx-auto">
-          <img src="{{asset('images/kenyawi.png')}}" class="speaker-image rounded-circle z-depth-1"
-            alt="Sample avatar">
-        </div>
-        <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Kenyawi</p></a>
-      </div>
-      <!-- Grid column -->
+
+      @endforelse
       
       
     </div>
@@ -111,11 +92,19 @@
         <h3 class="h1-responsive font-weight-bold my-5 text-center py-5" style="color: rgb(59, 59, 59);">TOP TOPICS</h2>
 
         <div class="row">
-            <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-12 py-2 d-flex justify-content-center"><a href="#" class="text-decoration-none"><div class="container-topic text-center rounded py-5">Salah</div></a></div>
-            <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-12 py-2 d-flex justify-content-center"><a href="#" class="text-decoration-none"><div class="container-topic text-center rounded py-5">Marriage</div></a></div>
-            <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-12 py-2 d-flex justify-content-center"><a href="#" class="text-decoration-none"><div class="container-topic text-center rounded py-5">Hajj</div></a></div>
-            <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-12 py-2 d-flex justify-content-center"><a href="#" class="text-decoration-none"><div class="container-topic text-center rounded py-5">Charity</div></a></div>
-        </div>
+          @forelse ($topics as $topic)
+            <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-12 py-2 d-flex justify-content-center"><a href="/topic/episodes/{{$topic->id}}" class="text-decoration-none"><div class="container-topic text-center rounded py-5">{{$topic->name}}</div></a></div>
+          
+            @empty
+            <div class="text-center">
+            <div class="container">
+              <p class="text-center font-black m-5"> No items Found </p>
+            </div>
+              
+            </div>
+
+            @endforelse
+          </div>
     </div>
   </section>
    <!-- top topics section -->

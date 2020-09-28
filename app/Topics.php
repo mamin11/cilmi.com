@@ -27,7 +27,7 @@ class Topics extends Model
 
     public function getEpisodes()
     {
-        $episodes = Audio::get()->where('topic', $this->id);
+        $episodes = Audio::where('topic', $this->id)->paginate(12);
 
         return $episodes;
     }

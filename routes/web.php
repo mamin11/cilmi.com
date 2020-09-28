@@ -13,48 +13,46 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 // Route::get('/speakers', function () {
 //     return view('speakers');
 // });
 
-Route::get('/speakers', 'ImageController@show'); 
+// Route::get('/speakers', 'ImageController@show'); 
 
-Route::get('/topics', function () {
-    return view('topics');
-});
+// Route::get('/topics', function () {
+//     return view('topics');
+// });
 
-Route::get('/series', function () {
-    return view('series');
-});
+// Route::get('/series', function () {
+//     return view('series');
+// });
 
 
-Route::get('/recents', function () {
-    return view('recents');
-});
+// Route::get('/recents', function () {
+//     return view('recents');
+// });
 
 // Route::get('/episodes', function () {
 //     return view('episodes');
 // });
 
-Route::get('/episodes', 'AudioController@show'); 
+// Route::get('/episodes', 'AudioController@show'); 
 
 // Route::get('/episode', function () {
 //     return view('episode');
 // });
 
-Route::get('/episode/{id}', 'AudioController@showEpisode'); 
-
-Route::get('/test', 'AudioController@create');
-Route::post('/test', 'AudioController@store');
+// Route::get('/test', 'AudioController@create');
+// Route::post('/test', 'AudioController@store');
 // Route::get('/test/{audio}', 'AudioController@show');
 
-Route::get('/testImage', 'ImageController@create');
-Route::post('/testImage', 'ImageController@store');
-Route::get('/testImage/{image}', 'ImageController@show'); 
+// Route::get('/testImage', 'ImageController@create');
+// Route::post('/testImage', 'ImageController@store');
+// Route::get('/testImage/{image}', 'ImageController@show'); 
 
 
 Route::get('/admin', 'AdminController@dashboard'); //done
@@ -102,13 +100,13 @@ Route::post('/admin/episode/edit/{id}', 'AudioController@editEpisode');//done
 Route::get('/admin/episode/delete/{id}', 'AudioController@deleteEpisode');//done
 
 //series routes
-Route::get('/admin/series', 'SeriesController@dashboard');
-Route::get('/admin/series/view', 'SeriesController@viewSeries');
-Route::get('/admin/series/create', 'SeriesController@createSeriesForm');
-Route::post('/admin/series/create', 'SeriesController@createSeries');
-Route::get('/admin/series/edit/{id}', 'SeriesController@editSeriesForm');
-Route::post('/admin/series/edit/{id}', 'SeriesController@editSeries');
-Route::get('/admin/series/delete/{id}', 'SeriesController@deleteSeries');
+Route::get('/admin/series', 'SeriesController@dashboard');//done
+Route::get('/admin/series/view', 'SeriesController@viewSeries');//done
+Route::get('/admin/series/create', 'SeriesController@createSeriesForm');//done
+Route::post('/admin/series/create', 'SeriesController@createSeries');//done
+Route::get('/admin/series/edit/{id}', 'SeriesController@editSeriesForm');//done
+Route::post('/admin/series/edit/{id}', 'SeriesController@editSeries');//done
+Route::get('/admin/series/delete/{id}', 'SeriesController@deleteSeries');//done
 
 
 /*
@@ -116,3 +114,31 @@ Route::get('/admin/series/delete/{id}', 'SeriesController@deleteSeries');
     Voyager::routes();
 });
 */
+
+//frontend routes
+
+//home
+Route::get('/', 'GeneralController@home');
+Route::get('/about', 'GeneralController@about');
+Route::get('/contact', 'GeneralController@contact');
+Route::get('/policy', 'GeneralController@policy');
+Route::get('/donate', 'GeneralController@donate');
+
+//episodes
+Route::get('/episodes' ,'AudioController@showEpisodes');//done
+Route::get('/episode/{id}', 'AudioController@showEpisode');//done
+Route::get('/recents', 'AudioController@recentEpisodes');//done
+Route::any('/search', 'AudioController@search');
+
+
+//speaker
+Route::get('/speakers', 'ImageController@showSpeakers');//done
+Route::get('/speaker/episodes/{id}', 'ImageController@showSpeakerEpisodes');//done
+
+//topics
+Route::get('/topics', 'TopicController@showTopics');//done
+Route::get('/topic/episodes/{id}', 'TopicController@showTopicEpisodes');//done
+
+//series
+Route::get('/series', 'SeriesController@viewAllSeries');//done
+Route::get('/series/view/{id}', 'SeriesController@viewASeries');//done

@@ -35,7 +35,12 @@
                 </div>
         
         </div> 
+        
         @endforelse
+
+        <div class="container ">
+            {{$admins->links()}}
+        </div>
 
         @if(Session::has('message'))
         <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>

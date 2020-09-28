@@ -26,6 +26,10 @@
 @csrf
 
     <div class="form-group m-5">
+        <input type="text" class="form-control {{ $errors->has('name') ? 'has-error' : '' }}" id="InputTitle" name="episodeTitle" placeholder="title" value="{{ $episode->title ? $episode->title : '' }}">
+    </div>
+
+    <div class="form-group m-5">
         <select id="inputRole" class="form-control font-color-black {{ $errors->has('role_id') ? 'has-error' : '' }}" name="episodeTopic">
             <option class="font-color-black" >Choose topic</option>
             @forelse ($topics as $topic)

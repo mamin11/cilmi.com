@@ -3,7 +3,7 @@
     @section('content')
     
     <!-- Section: Team -->
-<section class="team-section text-center my-5 w-100">
+<section class="team-section text-center my-5">
 
     <!-- Section heading -->
     <div class="container ">
@@ -17,318 +17,35 @@
           
    
       <!-- Grid column -->
-      <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 my-3">
         <div class="avatar mx-auto">
-          <img src="{{$speaker->url}}" class="speaker-image rounded-circle z-depth-1"
+          <img src="{{$speaker->url ? $speaker->url : asset('images/placeholder.png')}}" class="speaker-image rounded-circle z-depth-1"
             alt="An image of {{$speaker->firstname}}"> 
         </div>
-        <a href="#"><p class="font-weight-bold mt-4 mb-3">{{$speaker->firstname}} {{$speaker->surname}}</p></a>
+        <a href="/speaker/episodes/{{$speaker->id}}"><p class="font-weight-bold mt-4 mb-3">{{$speaker->firstname}} {{$speaker->surname}}</p></a>
       </div>
       <!-- Grid column -->
 
-      <a href="#" class="btn-see-all btn btn-dark">See All</a> <!-- this does not show if the result is empty -->
+      
 
       @empty
-      <div class="text-center" style="height: 65vh;">
+      <div class="text-center">
       <div class="container">
         <p class="text-center font-black m-5"> No items Found </p>
       </div>
          
       </div>
-      
+      <!-- <a href="#" class="btn-see-all btn btn-dark">See All</a> -->
+       <!-- this does not show if the result is empty -->
 
       @endforelse
-
-      {{-- <!-- Grid column -->
-      <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-        <div class="avatar mx-auto">
-          <img src="{{asset('images/said.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-            alt="Sample avatar">
-        </div>
-        <a href="#"><p class="font-weight-bold mt-4 mb-3">Said Ragge</p></a>
-      </div>
-      <!-- Grid column -->
-  
-      <!-- Grid column -->
-      <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-        <div class="avatar mx-auto">
-          <img src="{{asset('images/umal.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-            alt="Sample avatar">
-        </div>
-        <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Umal</p></a>
-      </div>
-      <!-- Grid column -->
-  
-      <!-- Grid column -->
-      <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-        <div class="avatar mx-auto">
-          <img src="{{asset('images/kenyawi.png')}}" class="speaker-image rounded-circle z-depth-1"
-            alt="Sample avatar">
-        </div>
-        <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Kenyawi</p></a>
-      </div>
-      <!-- Grid column -->
-      
-          <!-- Grid row -->
-    <div class="row p-0 m-0">
-  
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/abubakar.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Abubakar Mohammed</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/said.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Said Ragge</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/umal.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Umal</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/kenyawi.png')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Kenyawi</p></a>
-        </div>
-        <!-- Grid column -->
-
-            <!-- Grid row -->
-    <div class="row p-0 m-0">
-  
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/abubakar.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Abubakar Mohammed</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/said.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Said Ragge</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/umal.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Umal</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/kenyawi.png')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Kenyawi</p></a>
-        </div>
-        <!-- Grid column -->
-
-            <!-- Grid row -->
-    <div class="row p-0 m-0">
-  
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/abubakar.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Abubakar Mohammed</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/said.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Said Ragge</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/umal.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Umal</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/kenyawi.png')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Kenyawi</p></a>
-        </div>
-        <!-- Grid column -->
-
-            <!-- Grid row -->
-    <div class="row p-0 m-0">
-  
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/abubakar.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Abubakar Mohammed</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/said.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Said Ragge</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/umal.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Umal</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/kenyawi.png')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Kenyawi</p></a>
-        </div>
-        <!-- Grid column -->
-
-            <!-- Grid row -->
-    <div class="row p-0 m-0">
-  
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/abubakar.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Abubakar Mohammed</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/said.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Said Ragge</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/umal.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Umal</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/kenyawi.png')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Kenyawi</p></a>
-        </div>
-        <!-- Grid column -->
-
-            <!-- Grid row -->
-    <div class="row p-0 m-0">
-  
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/abubakar.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Abubakar Mohammed</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/said.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Said Ragge</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/umal.jpg')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Umal</p></a>
-        </div>
-        <!-- Grid column -->
-    
-        <!-- Grid column -->
-        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mb-lg-0 mb-5 p-0 m-0">
-          <div class="avatar mx-auto">
-            <img src="{{asset('images/kenyawi.png')}}" class="speaker-image rounded-circle z-depth-1"
-              alt="Sample avatar">
-          </div>
-          <a href="#"><p class="font-weight-bold mt-4 mb-3">Sheikh Kenyawi</p></a>
-        </div>
-        <!-- Grid column --> --}}
-      
+ 
     </div>
-    
+
+    <div class="container ">
+    {{$speakers->links()}}
+    </div>
+
     <!--ADD PAGINATION HERE -->
     <!-- <a href="#" class="btn-see-all btn btn-dark">See All</a> -->
 

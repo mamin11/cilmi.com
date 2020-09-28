@@ -9,106 +9,32 @@
 
             <div class="container table">
                 <div class="row border-top border-bottom py-2">
-                    <div class="col col-4 bold">#</div>
+                    <div class="col col-2 bold">#</div>
                     <div class="col col-4 bold">Speaker</div>
-                    <div class="col col-4 bold">Episodes</div>
+                    <div class="col col-4 bold">Title</div>
+                    <div class="col col-2 bold">Episodes</div>
                 </div>
 
-                <a href="#">
+                @forelse ($series as $serie)
+                <a href="/series/view/{{$serie->id}}">
                      <div class="row border-top border-bottom py-2">
-                        <div class="col col-4">1</div>
-                        <div class="col col-4">Abubakar Mohamed</div>
-                        <div class="col col-4">5</div>
+                        <div class="col col-2">&bull;</div>
+                        <div class="col col-4">{{$serie->getSpeaker()->firstname .' '. $serie->getSpeaker()->surname}}</div>
+                        <div class="col col-4 ">{{$serie->title}}</div>
+                        <div class="col col-2">{{$serie->getNumberOfEpisodes()}}</div>
                     </div>
                 </a>
 
-                <a href="#">
-                    <div class="row border-top border-bottom py-2">
-                        <div class="col col-4">2</div>
-                        <div class="col col-4">Said Ragge</div>
-                        <div class="col col-4">12</div>
-                    </div>
-                </a>
+                @empty
+                <div class="text-center">
+                    No items Found
+                </div>
+            
+                @endforelse
 
-                <a href="#">                
-                    <div class="row border-top border-bottom py-2">
-                        <div class="col col-4">3</div>
-                        <div class="col col-4">Sheikh Umal</div>
-                        <div class="col col-4">21</div>
-                    </div>
-                </a>
-                
-                <a href="#">
-                    <div class="row border-top border-bottom py-2">
-                       <div class="col col-4">1</div>
-                       <div class="col col-4">Abubakar Mohamed</div>
-                       <div class="col col-4">14</div>
-                   </div>
-               </a>
-
-               <a href="#">
-                   <div class="row border-top border-bottom py-2">
-                       <div class="col col-4">2</div>
-                       <div class="col col-4">Said Ragge</div>
-                       <div class="col col-4">18</div>
-                   </div>
-               </a>
-
-               <a href="#">                
-                   <div class="row border-top border-bottom py-2">
-                       <div class="col col-4">3</div>
-                       <div class="col col-4">Sheikh Umal</div>
-                       <div class="col col-4">9</div>
-                   </div>
-               </a>
-
-               <a href="#">
-                <div class="row border-top border-bottom py-2">
-                   <div class="col col-4">1</div>
-                   <div class="col col-4">Abubakar Mohamed</div>
-                   <div class="col col-4">11</div>
-               </div>
-           </a>
-
-           <a href="#">
-               <div class="row border-top border-bottom py-2">
-                   <div class="col col-4">2</div>
-                   <div class="col col-4">Said Ragge</div>
-                   <div class="col col-4">15</div>
-               </div>
-           </a>
-
-           <a href="#">                
-               <div class="row border-top border-bottom py-2">
-                   <div class="col col-4">3</div>
-                   <div class="col col-4">Sheikh Umal</div>
-                   <div class="col col-4">10</div>
-               </div>
-           </a>
-
-           <a href="#">
-            <div class="row border-top border-bottom py-2">
-               <div class="col col-4">1</div>
-               <div class="col col-4">Abubakar Mohamed</div>
-               <div class="col col-4">18</div>
-           </div>
-       </a>
-
-       <a href="#">
-           <div class="row border-top border-bottom py-2">
-               <div class="col col-4">2</div>
-               <div class="col col-4">Said Ragge</div>
-               <div class="col col-4">11</div>
-           </div>
-       </a>
-
-       <a href="#">                
-           <div class="row border-top border-bottom py-2">
-               <div class="col col-4">3</div>
-               <div class="col col-4">Sheikh Umal</div>
-               <div class="col col-4">10</div>
-           </div>
-       </a>
+            <div class="container text-center pagination">
+                {{$series->links()}}
+            </div>
 
             </div>
             

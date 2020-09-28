@@ -22,9 +22,6 @@
           <a class="nav-link" href="/recents">Recent</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2 font-12-px" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-warning my-2 my-sm-0 font-12-px" type="submit">Search</button>
-      </form>
+      <livewire:search-dropdown> 
     </div>
   </nav>

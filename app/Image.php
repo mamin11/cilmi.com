@@ -17,7 +17,7 @@ class Image extends Model
     public function getEpisodes()
     {
         //function to get all episodes of a speaker
-        $episodes = Audio::get()->where('id', $this->id)->first();
+        $episodes = Audio::take(12)->where('speaker', $this->id);
 
         return $episodes;
     }

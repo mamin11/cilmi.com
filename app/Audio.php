@@ -17,14 +17,29 @@ class Audio extends Model
 
     public function getSpeaker() 
     {
-        $speaker = Image::get()->where('id', $this->speaker)->first();
+        $speaker = Image::get()
+        ->where('id', $this->speaker)
+        ->first();
+        
         return $speaker;
     }
 
     public function getTopic() 
     {
-        $topic = Topics::get()->where('id', $this->topic)->first();
+        $topic = Topics::get()
+        ->where('id', $this->topic)
+        ->first();
 
         return $topic;
+    }
+
+    public function similarEpisodes()
+    {
+        $similarEpisodes = Audio::inRandomOrder()
+        ->where('topic', $this->topic)
+        ->get()
+        ;
+
+        return $similarEpisodes;
     }
 }

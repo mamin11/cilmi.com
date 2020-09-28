@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\Audio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -64,7 +65,7 @@ class ImageController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
 
     public function viewSpeakers()
     {
-        $speakers = Image::orderBy('firstname')->get(); 
+        $speakers = Image::orderBy('firstname')->paginate(12);
         return view('admin.speakersList')->with('speakers', $speakers);
     }
 
@@ -75,11 +76,21 @@ class ImageController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
 
     public function createSpeaker(Request $request)
     {
-        $name = $request->file('images')->getClientOriginalName();
+        if ($request->hasFile('images')) {
+            $name = $request->file('images')->getClientOriginalName();
 
-        $path = $request->file('images')->store('images', 's3');
+            $path = $request->file('images')->store('images', 's3');
 
-        Storage::disk('s3')->setVisibility($path, 'public');
+            Storage::disk('s3')->setVisibility($path, 'public');
+
+            $FILENAME = basename($path);
+            $URL = Storage::disk('s3')->url($path);
+        } 
+        else {
+            $path = '';
+            $FILENAME = '';
+            $URL = '';
+        }
 
         // var_dump($data);
         //return $image;
@@ -87,8 +98,8 @@ class ImageController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
         $speaker = Image::create([
             'firstname' => $request->input('speakerFirstname'),
             'surname' => $request->input('speakerSurname'),
-            'filename' => basename($path),
-            'url' => Storage::disk('s3')->url($path)
+            'filename' => $FILENAME,
+            'url' => $URL
         ]);
 
         Session::flash('message', 'Successfully created!');
@@ -182,4 +193,26 @@ class ImageController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
         //var_dump($speaker);
         //return $path;
     }
+
+
+
+
+    //front-end starts here
+    public function showSpeakers()
+    {
+        $speakers = Image::orderBy('firstname')->paginate(12);
+        return view('speakers')->with('speakers', $speakers);
+    }
+
+    public function showSpeakerEpisodes($id)
+    {
+        $speaker = Image::get()->where('id', $id)->first();
+        $episodes = Audio::take(12)->where('speaker', $id)->paginate(12);
+
+        return view('speakerEpisodes')->with([
+            'episodes'=> $episodes,
+            'speaker' => $speaker
+            ]);
+    }
+
 }

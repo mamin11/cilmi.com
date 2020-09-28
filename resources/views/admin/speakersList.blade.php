@@ -2,7 +2,7 @@
 
     @section('content')
     <!-- Section: Team -->
-    <section class="team-section text-center my-5 w-100 h-100">
+    <section class="team-section text-center">
 
         <!-- Section heading -->
         <div class="container ">
@@ -42,6 +42,10 @@
         @if(Session::has('message'))
         <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
         @endif
+
+        <div class="container ">
+            {{$speakers->links()}}
+        </div>
    
     @endsection
 
