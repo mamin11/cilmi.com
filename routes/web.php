@@ -13,48 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
-
-// Route::get('/speakers', function () {
-//     return view('speakers');
-// });
-
-// Route::get('/speakers', 'ImageController@show'); 
-
-// Route::get('/topics', function () {
-//     return view('topics');
-// });
-
-// Route::get('/series', function () {
-//     return view('series');
-// });
-
-
-// Route::get('/recents', function () {
-//     return view('recents');
-// });
-
-// Route::get('/episodes', function () {
-//     return view('episodes');
-// });
-
-// Route::get('/episodes', 'AudioController@show'); 
-
-// Route::get('/episode', function () {
-//     return view('episode');
-// });
-
-// Route::get('/test', 'AudioController@create');
-// Route::post('/test', 'AudioController@store');
-// Route::get('/test/{audio}', 'AudioController@show');
-
-// Route::get('/testImage', 'ImageController@create');
-// Route::post('/testImage', 'ImageController@store');
-// Route::get('/testImage/{image}', 'ImageController@show'); 
-
-
 Route::get('/admin', 'AdminController@dashboard'); //done
 Route::get('/admin/users', 'AdminController@adminPanel');//done
 Route::get('/admin/view', 'AdminController@viewAdmins');//done
@@ -84,7 +42,7 @@ Route::get('/admin/topics/delete/{id}', 'TopicController@deleteTopic');//done
 //speaker routes
 Route::get('/admin/speakers', 'ImageController@dashboard');//done
 Route::get('/admin/speakers/view', 'ImageController@viewSpeakers');//done
-Route::get('/admin/speakers/create', 'ImageController@createSpeakerForm');//done
+Route::get('/admin/speakers/create', 'ImageController@createSpeakerForm');//doneo
 Route::post('/admin/speakers/create', 'ImageController@createSpeaker');//done
 Route::get('/admin/speakers/edit/{id}', 'ImageController@editSpeakerForm');//done
 Route::post('/admin/speakers/edit/{id}', 'ImageController@editSpeaker');//done
@@ -108,6 +66,15 @@ Route::get('/admin/series/edit/{id}', 'SeriesController@editSeriesForm');//done
 Route::post('/admin/series/edit/{id}', 'SeriesController@editSeries');//done
 Route::get('/admin/series/delete/{id}', 'SeriesController@deleteSeries');//done
 
+//questions
+Route::get('/admin/questions', 'QuestionController@dashboard');//done
+Route::get('/admin/questions/view', 'QuestionController@viewQuestions');//done
+Route::get('/admin/questions/create', 'QuestionController@createQuestionsForm');//done
+Route::post('/admin/questions/create', 'QuestionController@createQuestions');//done
+Route::get('/admin/questions/edit/{id}', 'QuestionController@editQuestionsForm');
+Route::post('/admin/questions/edit/{id}', 'QuestionController@editQuestions');
+Route::get('/admin/questions/delete/{id}', 'QuestionController@destroy');
+
 
 /*
 //Route::group(['prefix' => 'admin'], function () {
@@ -118,7 +85,9 @@ Route::get('/admin/series/delete/{id}', 'SeriesController@deleteSeries');//done
 //frontend routes
 
 //home
-Route::get('/', 'GeneralController@home');
+// Route::get('/', array('as', => 'home', 'uses' => 'GeneralController@home'));
+Route::get('/', array('as' => 'home', 'uses' => 'GeneralController@home'));
+
 Route::get('/about', 'GeneralController@about');
 Route::get('/contact', 'GeneralController@contact');
 Route::get('/policy', 'GeneralController@policy');
@@ -142,3 +111,7 @@ Route::get('/topic/episodes/{id}', 'TopicController@showTopicEpisodes');//done
 //series
 Route::get('/series', 'SeriesController@viewAllSeries');//done
 Route::get('/series/view/{id}', 'SeriesController@viewASeries');//done
+
+//questions
+Route::get('/questions', 'QuestionController@index');//done
+Route::post('/results', 'QuestionController@showResults');//done

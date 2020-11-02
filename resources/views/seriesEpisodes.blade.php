@@ -17,14 +17,33 @@
 
                 @forelse ($episodes as $episode)
 
-                <a href="/episode/{{$episode->id}}">
-                     <div class="row border-top border-bottom py-2" id="hover-orange-bg">
-                        <div class="col col-2">&bull;</div>
+                <a href="/episode/{{$episode->id}}"></a>
+                     <div class="row border-top border-bottom py-2" >
+                        <div class="col col-2">
+                            <button class="btn btn-sm btn-dark" type="button" data-toggle="collapse" data-target="#collapse{{$episode->id}}" data-toggle="false" aria-expanded="false"aria-controls="collapse{{$episode->id}}">
+                                <i class="far fa-play-circle"></i>
+                            </button>
+                        </div>
                         <div class="col col-4" >{{$episode->title}}</div>
                         <div class="col col-2">{{$episode->getTopic()->name}}</div>
                         <div class="col col-4">{{$episode->getSpeaker()->firstname . ' '. $episode->getSpeaker()->surname}}</div>
                     </div>
-                </a>
+
+                    <div class="row justify-content-center">
+
+                        <div id="collapse{{$episode->id}}" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body font-color-black">
+                                <div class=" text-center py-4">
+                                    <audio controls>
+                                        <source src="{{$episode->url}}" type="audio/ogg">
+                                        <source src="{{$episode->url}}" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+               
 
                 @empty
                 <div class="text-center">

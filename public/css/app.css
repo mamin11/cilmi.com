@@ -241,3 +241,15 @@ footer {
   /* margin-top: auto;
   padding-bottom: auto; */
 }
+
+.correct-answer {
+  color: green !important;
+}
+
+.wrong-answer {
+  color: red !important;
+}
+
+.list-sytle-none {
+  list-style-type: none !important;
+}
