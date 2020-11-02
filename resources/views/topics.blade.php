@@ -3,7 +3,7 @@
     @section('content')
 
   <!-- top topics section -->
-  <section class="w-100">
+  <section class="w-100 h-100">
     <div class="container topics-section">
 
         <h3 class="h1-responsive font-weight-bold my-5 text-center py-5" style="color: rgb(59, 59, 59);">THE TOPICS</h2>

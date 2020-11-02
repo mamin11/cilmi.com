@@ -6,8 +6,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Role;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends \TCG\Voyager\Models\User
+
+class User extends Authenticatable
 {
 
     public $timestamps = true;

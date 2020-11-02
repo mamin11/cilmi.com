@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Console\Input\Input;
 
-class ImageController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
+class ImageController extends Controller
 {
     // public function create() 
     // {

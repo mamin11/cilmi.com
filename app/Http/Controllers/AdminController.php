@@ -25,6 +25,11 @@ class AdminController extends Controller
         return view('admin.dashboard');
      }
 
+     public function login()
+     {
+         
+     }
+
     public function adminPanel()
     {
         //this function is for the manage admins area
