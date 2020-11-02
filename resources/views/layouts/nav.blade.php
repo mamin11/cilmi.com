@@ -21,6 +21,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/recents">Recent</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/questions">Questions</a>
+        </li>
       </ul>
       <livewire:search-dropdown> 
     </div>

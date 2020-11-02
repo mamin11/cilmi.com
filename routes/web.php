@@ -89,9 +89,9 @@ Route::get('/admin/questions/delete/{id}', 'QuestionController@destroy');
 Route::get('/', array('as' => 'home', 'uses' => 'GeneralController@home'));
 
 Route::get('/about', 'GeneralController@about');
-Route::get('/contact', 'GeneralController@contact');
-Route::get('/policy', 'GeneralController@policy');
-Route::get('/donate', 'GeneralController@donate');
+// Route::get('/contact', 'GeneralController@contact');
+// Route::get('/policy', 'GeneralController@policy');
+// Route::get('/donate', 'GeneralController@donate');
 
 //episodes
 Route::get('/episodes' ,'AudioController@showEpisodes');//done

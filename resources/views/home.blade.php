@@ -17,12 +17,14 @@
                     <div class="row">
                         <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                             <div>
-                                <h1 class="text-dark p-2 font-2.5">CILMI.COM</h1>
+                                <h1 class="text-dark p-2 font-2.5">CILMI</h1>
                             </div>
                         </div>
                         <div class="col col-lg-12 col-md-12 col-sm-12 col-12 ">
                             <div>
-                                <p class="text-dark font-1.5">An audio library of Islamic lectures and talks in Somali</p>
+                                <p class="text-dark font-1.5">Cilmi waa website eey umada soomalida uga faideysan karaan aqoon diini aha. Waxaad 
+                                    ka dhageysan karta muxaadarooyin kala duwan. Waxaad sido kale ka heli suaalo iyo jawaabo diini ah.
+                                </p>
                             </div>
                         </div>
                         <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
