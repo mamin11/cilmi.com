@@ -1,1 +1,1 @@
-#cilmi.com is an online audio library web application
+#cilmi.com is an online audio publishing web application
